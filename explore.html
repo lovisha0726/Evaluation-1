@@ -221,8 +221,10 @@
     </div>
 
     <script>
+        // Initial filter selection to show all items
         filterSelection("all");
 
+        // Function to filter elements based on category
         function filterSelection(c) {
             var x, i;
             x = document.getElementsByClassName("column");
@@ -233,6 +235,7 @@
             }
         }
 
+        // Function to add class to an element
         function w3AddClass(element, name) {
             var i, arr1, arr2;
             arr1 = element.className.split(" ");
@@ -244,6 +247,7 @@
             }
         }
 
+        // Function to remove class from an element
         function w3RemoveClass(element, name) {
             var i, arr1, arr2;
             arr1 = element.className.split(" ");
@@ -256,14 +260,19 @@
             element.className = arr1.join(" ");
         }
 
+        // Add active class to the current button (highlight it)
         var btnContainer = document.getElementById("myBtnContainer");
         var btns = btnContainer.getElementsByClassName("btn");
         for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function(){
+            btns[i].addEventListener("click", function () {
                 var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
+                if (current.length > 0) {
+                    current[0].className = current[0].className.replace(" active", "");
+                }
                 this.className += " active";
             });
         }
     </script>
+</body>
 
+</html>
