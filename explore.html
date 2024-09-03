@@ -68,11 +68,14 @@
             padding: 10px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center align content */
         }
 
+        /* Ensure uniform image size */
         .content img {
             width: 100%;
-            height: auto;
+            height: 540px; /* Set a fixed height */
+            object-fit: cover; /* Ensures the image covers the space without distortion */
             border-radius: 8px;
         }
 
