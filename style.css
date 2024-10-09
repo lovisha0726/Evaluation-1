@@ -6,7 +6,7 @@
 
 .navbar {
     display: flex;
-    justify-content: center; /* Center the logo */
+    justify-content: center; 
     align-items: center;
     padding: 20px;
     position: relative;
@@ -14,7 +14,7 @@
 
 nav {
     position: absolute;
-    right: 0; /* Move the navigation menu to the right */
+    right: 0; 
     text-align: right;
 }
 
@@ -30,7 +30,7 @@ nav ul li {
 
 a {
     text-decoration: none;
-    color: #000; /* Change link color to black */
+    color: #000; 
 }
 
 p {
@@ -155,7 +155,7 @@ p {
     }
 
     .navbar {
-        justify-content: space-between; /* Adjust logo and nav items on small screens */
+        justify-content: space-between; 
     }
 }
 
