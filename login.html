@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Login & Signup</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #faf8f3, #f4efe9); /* Soft gradient background */
+    }
+
+    .container {
+        width: 500px;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+        transition: all 0.3s ease; /* Adjusts height dynamically */
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .switch {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .switch button {
+        width: 50%;
+        padding: 12px;
+        background-color: #bfa97a;
+        border: none;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .switch button.active {
+        background-color: #d4af37;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds depth to active button */
+    }
+
+    .form-wrapper {
+        width: 100%;
+    }
+
+    .form {
+        display: none;
+        flex-direction: column;
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .form.active {
+        display: flex;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .form h2 {
+        font-size: 24px;
+        color: #555;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .form label {
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #444;
+    }
+
+    .form input {
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form input:focus {
+        border-color: #bfa97a;
+        box-shadow: 0 0 8px rgba(191, 169, 122, 0.3);
+    }
+
+    .form button {
+        padding: 12px;
+        background-color: #bfa97a;
+        border: none;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .form button:hover {
+        background-color: #d4af37;
+        transform: translateY(-3px);
+    }
+
+    .error {
+        color: red;
+        font-size: 14px;
+        text-align: center;
+        margin-top: -10px;
+    }
+
+    .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #d4af37;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        animation: spin 1s linear infinite;
+        margin: 10px auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .form input:hover {
+        border-color: #d4af37;
+    }
+
+
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="switch">
+                <button id="loginBtn" class="active">Login</button>
+                <button id="signupBtn">Sign Up</button>
+            </div>
+
+            <div class="form-wrapper">
+               
+                <form id="loginForm" class="form active" autocomplete="off">
+                    <h2>Welcome Back!</h2>
+                    
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                    <div><button type="submit">Login</button></div>
+                    <div class="loader hidden"></div>
+                    <p class="error hidden">Please fill out all fields.</p>
+                </form>
+
+                <!-- Signup Form -->
+                <form id="signupForm" class="form hidden" autocomplete="off">
+                    <h2>Join Us!</h2>
+                    <h2> </h2>
+
+                    <label for="signup-name">Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your name" required>
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password" required>
+                    <button type="submit">Sign Up</button>
+                    <div class="loader hidden"></div>
+                    <p class="error hidden">Please fill out all fields.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const loginError = loginForm.querySelector('.error');
+        const signupError = signupForm.querySelector('.error');
+        const loginLoader = loginForm.querySelector('.loader');
+        const signupLoader = signupForm.querySelector('.loader');
+    
+        // Switch to Signup
+        signupBtn.addEventListener('click', () => {
+            signupForm.classList.add('active'); // Show signup form
+            loginForm.classList.remove('active'); // Hide login form
+            signupBtn.classList.add('active');
+            loginBtn.classList.remove('active');
+        });
+    
+        // Switch to Login
+        loginBtn.addEventListener('click', () => {
+            loginForm.classList.add('active'); // Show login form
+            signupForm.classList.remove('active'); // Hide signup form
+            loginBtn.classList.add('active');
+            signupBtn.classList.remove('active');
+        });
+    
+        // Form Submission Handlers
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+    
+            if (!email || !password) {
+                loginError.classList.remove('hidden');
+            } else {
+                loginError.classList.add('hidden');
+                showLoader(loginLoader, 'index.html');
+            }
+        });
+    
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+    
+            if (!name || !email || !password) {
+                signupError.classList.remove('hidden');
+            } else {
+                signupError.classList.add('hidden');
+                showLoader(signupLoader, 'index.html');
+            }
+        });
+    
+        function showLoader(loader, redirectUrl) {
+            loader.classList.remove('hidden');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                window.location.href = redirectUrl; // Redirect to index.html after loading
+            }, 2000);
+        }
+    </script>
+    
+</body>
+</html>
