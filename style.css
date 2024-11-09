@@ -10,10 +10,6 @@
             background-color: #f9f7f3;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         /* Navbar Styling */
         .navbar {
             display: flex;
@@ -31,13 +27,11 @@
 
         .logo img {
             width: 300px;
-            transition: transform 0.3s ease-in-out;
         }
 
         nav ul {
             display: flex;
             list-style-type: none;
-            transition: all 0.3s ease-in-out;
         }
 
         nav ul li {
@@ -59,50 +53,8 @@
 
         .menu-icon {
             display: none;
-            height: 40px;
-            width: 40px;
+            font-size: 24px;
             cursor: pointer;
-        }
-
-        /* Header Styling */
-        .header {
-            background-image: url("images/bg.jpg");
-            background-size: cover;
-            background-position: center;
-            padding: 200px 0;
-            color: #fff;
-            margin-top: 80px;
-        }
-
-        .header .col-2 {
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 50px;
-            color: #000;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 20px;
-            color: #000;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #bfa97a;
-            color: #fff;
-            padding: 10px 30px;
-            margin-top: 10px;
-            border-radius: 30px;
-            transition: background 0.5s;
-        }
-
-        .btn:hover {
-            background-color: #d4af37;
-            transform: translateY(-3px);
         }
 
         /* Responsive Navbar */
