@@ -9,11 +9,9 @@ body {
     color: #333;
     background-color: #f9f7f3; /* Off-white for a soft, luxurious look */
 }
-
 html {
     scroll-behavior: smooth; /* Enables smooth scrolling */
 }
-
 /* Navbar styling */
 .navbar {
     display: flex;
@@ -30,20 +28,18 @@ html {
     z-index: 1000; /* Ensure it stays above other content */
 }
 
-/* Logo section */
 .logo img {
     width: 300px;
     transition: transform 0.3s ease-in-out;
 }
 
-/* Navbar links */
 nav ul {
-    display: flex; /* Use flexbox to align the list items in a row */
+    display: inline-block;
     list-style-type: none;
 }
 
 nav ul li {
-    display: inline-flex; /* Ensure nav items are in a single line */
+    display: inline-block;
     margin-right: 30px; /* Increased margin for luxury spacing */
 }
 
@@ -58,208 +54,6 @@ nav ul li a {
 nav ul li a:hover {
     color: #d4af37; /* Darker gold on hover */
     border-bottom: 2px solid #d4af37; /* Underline effect for hover */
-}
-
-/* Menu icon styling */
-.menu-icon {
-    display: none; /* Hide by default */
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    background-color: #bfa97a; /* Background color for the menu icon */
-    position: relative;
-    cursor: pointer;
-}
-
-.menu-icon span,
-.menu-icon span::before,
-.menu-icon span::after {
-    content: "";
-    display: block;
-    height: 4px;
-    width: 25px;
-    background-color: #fff;
-    border-radius: 5px;
-    position: absolute;
-    transition: transform 0.3s;
-}
-.container {
-    max-width: 1300px;
-    margin: auto;
-    padding-left: 25px;
-    padding-right: 25px;
-}
-
-.row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.col-2 {
-    display: flex;
-    color: #000;
-    flex-direction: column; /* Stack children vertically */
-    justify-content: flex-start; /* Align items at the top */
-    align-items: center; /* Center the children horizontally */
-    text-align: center; /* Center text in this column */
-    margin-top: 0; /* Removed margin-top to move text up */
-    padding-top: 20px; /* Optional: add some padding at the top for spacing */
-}
-
-.col-2 h1 {
-    margin-top: 0; /* Remove any top margin to move the heading up */
-    margin-bottom: 10px; /* Optional: Adjust spacing below the heading */
-}
-
-.col-2 p {
-    margin-top: 10px; /* Optional: Adjust spacing above the paragraph */
-    color: black; /* Set paragraph text to black */
-    font-size: 30px;
-}
-
-.btn {
-    display: inline-block;
-    background: #bfa97a;
-    color: #fff;
-    padding: 8px 30px;
-    margin: 30px 0;
-    border-radius: 30px 0;
-    transition: background 0.5s;
-}
-
-.btn:hover {
-    background-color: #d4af37;
-    transform: translateY(-3px);
-}
-
-.col-3 {
-    flex-basis: 30%;
-    min-width: 250px;
-    margin-bottom: 30px;
-    margin-top: 30px;
-}
-
-.col-3 img {
-    width: 100%;
-}
-
-/* Featured Products Section Images */
-.col-4 {
-    flex-basis: 25%;
-    padding: 10px;
-    min-width: 200px;
-    margin-bottom: 50px;
-    transition: transform 0.5s;
-}
-
-.col-4 img {
-    width: 100%;
-    height: 350px; /* Set a fixed height for all product images */
-    object-fit: cover; /* Ensures the aspect ratio is maintained and images fill the space */
-    border-radius: 10px; /* Optional: adds rounded corners */
-}
-
-.small-container {
-    max-width: 1080px;
-    margin: auto;
-    padding-left: 25px;
-    padding-right: 25px;
-}
-
-.title {
-    text-align: center;
-    margin: 0 auto 80px;
-    position: relative;
-    line-height: 60px;
-    color: #555;
-}
-
-.tittle {
-    text-align: center;
-    margin: 80px auto 80px;
-    color: rgb(80, 74, 74);
-}
-
-.col-4:hover {
-    transform: translateX(-5px);
-}
-
-.col-5 img {
-    padding: 50px 0;
-    max-width: 600px;
-    align-self: right;
-}
-
-.menu-icon span {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.menu-icon span::before {
-    top: -8px;
-}
-
-.menu-icon span::after {
-    top: 8px;
-}
-
-/* Mobile view adjustments */
-@media only screen and (max-width: 800px) {
-    .navbar {
-        justify-content: space-between;
-    }
-
-    /* Show the menu icon on mobile */
-    .menu-icon {
-        display: block;
-    }
-
-    nav ul {
-        display: none; /* Hide the navigation links on small screens */
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    nav ul li {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    nav ul li a {
-        padding: 15px;
-        color: #333;
-    }
-
-    nav ul li a:hover {
-        color: #d4af37;
-    }
-
-    .menu-icon.open span {
-        background-color: transparent;
-    }
-
-    .menu-icon.open span::before {
-        transform: rotate(45deg);
-        top: 0;
-    }
-
-    .menu-icon.open span::after {
-        transform: rotate(-45deg);
-        top: 0;
-    }
-
-    nav ul.open {
-        display: flex; /* Show the navigation links when the menu icon is clicked */
-    }
 }
 
 /* Header Styling */
@@ -379,6 +173,37 @@ nav ul li a:hover {
     padding: 50px 0;
     max-width: 600px;
     align-self: right;
+}
+
+.menu-icon {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+@media only screen and (max-width: 800px) {
+    nav ul {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        margin-right: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .navbar {
+        justify-content: space-between; /* Adjust logo and nav items on small screens */
+    }
+}
+
+.menu-icon {
+    display: block;
+    cursor: pointer;
 }
 
 .footer {
