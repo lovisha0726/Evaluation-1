@@ -32,12 +32,12 @@
             display: flex;
             flex-direction: column;
             width: 50%;
-            padding-left: 20px;
+            align-items: center;
         }
         #main-image {
             height: auto;
             max-width: 100%;
-            margin: 0 auto 10px auto;
+            margin-bottom: 20px;
         }
         #main-image img {
             width: 100%;
@@ -50,11 +50,11 @@
             justify-content: center;
             gap: 10px;
             margin-top: 10px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
         .additional-images img {
-            width: calc(33.33% - 10px);
-            height: auto;
+            width: 100px;
+            height: 100px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             cursor: pointer;
@@ -63,23 +63,9 @@
         .additional-images img:hover {
             transform: scale(1.05);
         }
-        .image-navigation {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-            gap: 5px;
-        }
-        .image-navigation button {
-            background-color: transparent;
-            border: none;
-            font-size: 20px;
-            color: #bfa97a;
-            cursor: pointer;
-        }
         .product-details {
             width: 45%;
             text-align: left;
-            padding-right: 20px;
         }
         h2 {
             color: #bfa97a;
@@ -115,101 +101,15 @@
             background-color: #d4af37;
             transform: translateY(-3px);
         }
-        hr {
-            margin-top: 40px;
-            margin-bottom: 40px;
-            border: none;
-            border-top: 1px solid #ddd;
-        }
-        .section {
-            margin-top: 20px;
-        }
-        .section h4 {
-            font-size: 18px;
-            color: #d4af37;
-            margin-bottom: 10px;
-        }
-        .section p {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #555;
-        }
-        textarea {
-            width: 100%;
-            height: 100px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-            resize: none;
-        }
-        .submit-btn {
-            display: inline-block;
-            background-color: #bfa97a;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-        .submit-btn:hover {
-            background-color: #d4af37;
-        }
-        .star-review-container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-        .rating {
-            display: flex;
-            flex-direction: row;
-            direction: rtl;
-            justify-content: flex-start;
-            margin-bottom: 10px;
-        }
-        .rating input[type="radio"] {
-            display: none;
-        }
-        .rating label {
-            cursor: pointer;
-            font-size: 30px;
-            color: #ccc;
-            margin-left: 5px;
-        }
-        .rating label:hover,
-        .rating label:hover ~ label,
-        .rating input:checked ~ label {
-            color: gold;
-        }
 
         @media (max-width: 768px) {
             .content-wrapper {
                 flex-direction: column;
+                align-items: center;
             }
             .image-section, .product-details {
                 width: 100%;
-                padding: 0;
-            }
-            #main-image {
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h2 {
-                font-size: 24px;
-            }
-            h4 {
-                font-size: 18px;
-            }
-            p {
-                font-size: 12px;
-            }
-            .btn {
-                padding: 10px 20px;
-                font-size: 14px;
+                text-align: center;
             }
         }
     </style>
@@ -238,7 +138,6 @@
                 </div>
             </div>
         </div>
-        <!-- Other Sections -->
     </div>
 
     <script>
