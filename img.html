@@ -256,11 +256,50 @@
             document.querySelector('#main-image img').src = images[index];
         }
 
-        function buyNow() {
-            window.location.href = 'checkout.html';
-        }
+           function buyNow() {
+    // Save the product details to localStorage if needed
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const itemName = "YVES SAINT LAURENT Touche Éclat Blur Primer";
+    const itemPrice = 230.00;
+    const quantity = 1;
+
+    // Add item to cart
+    const existingItem = cartItems.find(item => item.name === itemName);
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cartItems.push({ name: itemName, price: itemPrice, quantity });
+    }
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+
+    // Redirect to the checkout page
+    window.location.href = 'checkout.html';
+}
+        function checkout() {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cartItems.length === 0) {
+        alert('Your cart is empty. Please add items before checking out.');
+        return;
+    }
+    // Redirect to the checkout page
+    window.location.href = 'checkout.html';
+}
 
         function addToCartAndGoToCart() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const itemName = "YVES SAINT LAURENT Touche Éclat Blur Primer";
+            const itemPrice = 230.00;
+            const quantity = 1;
+
+            const existingItem = cartItems.find(item => item.name === itemName);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cartItems.push({ name: itemName, price: itemPrice, quantity });
+            }
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+            // Redirect to the cart page after adding the item
             window.location.href = 'cart.html';
         }
 
