@@ -22,13 +22,13 @@
         }
 
         .cart-container {
-        max-width: 1000px; 
-        margin: 40px auto;
-        padding: 40px;
-        border-radius: 10px;
-        background-color: #ffffff;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
-}
+            max-width: 1000px; 
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+        }
 
         .cart-table {
             width: 100%;
@@ -110,6 +110,64 @@
             padding: 15px;
             margin-top: 40px;
         }
+
+        /* Responsive Design */
+        @media only screen and (max-width: 768px) {
+            .cart-container {
+                padding: 20px;
+            }
+
+            .cart-table th, .cart-table td {
+                font-size: 14px; /* Smaller font size for smaller screens */
+                padding: 10px; /* Less padding for smaller screens */
+            }
+
+            #cart-total {
+                font-size: 20px; /* Slightly smaller total font */
+            }
+
+            .checkout-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+                width: 100%; /* Full-width button */
+            }
+
+            .quantity-input {
+                width: 40px;
+            }
+
+            /* Stack columns for small screens */
+            .cart-table th, .cart-table td {
+                display: block;
+                width: 100%;
+                text-align: right; /* Right align text for readability */
+            }
+
+            .cart-table th {
+                text-align: left; /* Keep header aligned left */
+                font-size: 16px;
+            }
+
+            /* Add a visual break between rows */
+            .cart-table td {
+                border-top: 1px solid #e0e0e0;
+            }
+
+            .cart-table td:before {
+                content: attr(data-label); /* Show label before content on mobile */
+                font-weight: bold;
+                display: inline-block;
+                width: 100%;
+            }
+
+            .cart-table td:last-child {
+                margin-bottom: 10px; /* Space after action buttons */
+            }
+
+            footer {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -188,15 +246,14 @@
         }
 
         function checkout() {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cartItems.length === 0) {
-        alert('Your cart is empty. Please add items before checking out.');
-        return;
-    }
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cartItems.length === 0) {
+                alert('Your cart is empty. Please add items before checking out.');
+                return;
+            }
 
-
-    window.location.href = 'checkout.html';
-}
+            window.location.href = 'checkout.html';
+        }
 
         document.addEventListener('DOMContentLoaded', updateCartDisplay);
     </script>
