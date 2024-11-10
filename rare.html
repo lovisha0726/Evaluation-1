@@ -25,33 +25,35 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            gap: 20px;
             margin-bottom: 40px;
         }
         .image-section {
             display: flex;
             flex-direction: column;
             width: 50%;
-            padding-left: 40px;
+            align-items: center;
         }
         #main-image {
-            height: 600px;
-            width: 600px;
-            margin: 0 auto 10px auto;
+            height: auto;
+            max-width: 100%;
+            margin-bottom: 20px;
         }
         #main-image img {
             width: 100%;
-            height: 100%;
+            height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .additional-images {
             display: flex;
             justify-content: center;
-            margin-top: 10px;
+            gap: 10px;
+            overflow-x: auto; /* Horizontal scroll for smaller screens */
         }
         .additional-images img {
-            width: calc(33.33% - 10px);
-            height: auto;
+            width: 100px;
+            height: 100px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             cursor: pointer;
@@ -60,40 +62,26 @@
         .additional-images img:hover {
             transform: scale(1.05);
         }
-        .image-navigation {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-        .image-navigation button {
-            background-color: transparent;
-            border: none;
-            font-size: 20px;
-            color: #bfa97a;
-            cursor: pointer;
-            margin: 0 5px;
-        }
         .product-details {
             width: 45%;
             text-align: left;
-            padding-right: 40px;
         }
         h2 {
             color: #bfa97a;
-            font-size: 36px;
+            font-size: 28px;
             margin-bottom: 10px;
             font-weight: 600;
         }
         h4 {
-            font-size: 24px;
+            font-size: 20px;
             color: #d4af37;
             margin-bottom: 15px;
             font-weight: 400;
         }
         p {
-            font-size: 16px;
+            font-size: 14px;
             line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             color: #555;
         }
         .btn {
@@ -102,7 +90,7 @@
             color: #fff;
             padding: 12px 30px;
             border-radius: 50px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             margin: 10px 0;
             border: none;
@@ -180,6 +168,18 @@
         .rating input:checked ~ label {
             color: gold;
         }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .image-section,
+            .product-details {
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -190,33 +190,25 @@
                     <img src="images/p1_1.jpg" alt="Rare Beauty Soft Pinch Liquid Blush">
                 </div>
                 <div class="additional-images">
-                    <img src="images/p1_1.jpg" alt="Rare Beauty Soft Pinch Liquid Blush" onclick="changeImage(0)">
-                    <img src="images/p1.jpg" alt="Rare Beauty Soft Pinch Liquid Blush - 1" onclick="changeImage(1)">
-                    <img src="images/p1_2.jpeg" alt="Rare Beauty Soft Pinch Liquid Blush - 2" onclick="changeImage(2)">
-                    <img src="images/p1_3.webp" alt="Rare Beauty Soft Pinch Liquid Blush - 3" onclick="changeImage(3)">
-                </div>
-                <div class="image-navigation">
-                    <button onclick="changeImage(0)">1</button>
-                    <button onclick="changeImage(1)">2</button>
-                    <button onclick="changeImage(2)">3</button>
-                    <button onclick="changeImage(3)">4</button>
+                    <img src="images/p1_1.jpg" alt="Blush" onclick="changeImage(0)">
+                    <img src="images/p1.jpg" alt="Blush 1" onclick="changeImage(1)">
+                    <img src="images/p1_2.jpeg" alt="Blush 2" onclick="changeImage(2)">
+                    <img src="images/p1_3.webp" alt="Blush 3" onclick="changeImage(3)">
                 </div>
             </div>
-
             <div class="product-details">
                 <h2>Rare Beauty Soft Pinch Liquid Blush</h2>
                 <h4>$70.00</h4>
-                <p>Experience the ultimate luxury with YVES SAINT LAURENT Touche Éclat Blur Primer. This lightweight, illuminating primer blurs imperfections, leaving your skin smooth, radiant, and ready for flawless makeup application.</p>
+                <p>This lightweight blush adds a natural flush of color with a dewy finish.</p>
                 <div class="buttons">
                     <button class="btn" onclick="buyNow()">Buy Now</button>
                     <button class="btn" onclick="addToCartAndGoToCart()">Add to Cart</button>
                 </div>
             </div>
-                </div>
-            </div>
         </div>
 
         <hr>
+
         <div class="section">
             <h4>Ingredients:</h4>
             <p>Water, Dimethicone, Glycerin, Ethylhexyl Palmitate, etc.</p>
@@ -224,7 +216,7 @@
 
         <div class="section">
             <h4>Product Description:</h4>
-            <p>This illuminating primer not only blurs imperfections but also provides a radiant finish for a flawless makeup application. Suitable for all skin types.</p>
+            <p>Achieve a fresh and natural look with a single application. Suitable for all skin tones.</p>
         </div>
 
         <div class="section">
@@ -232,7 +224,7 @@
             <div class="star-review-container">
                 <div class="rating">
                     <input type="radio" id="star5" name="rating" value="5" />
-                    <label for="star5" title="5 star">&#9733;</label>
+                    <label for="star5" title="5 stars">&#9733;</label>
                     <input type="radio" id="star4" name="rating" value="4" />
                     <label for="star4" title="4 stars">&#9733;</label>
                     <input type="radio" id="star3" name="rating" value="3" />
@@ -240,7 +232,7 @@
                     <input type="radio" id="star2" name="rating" value="2" />
                     <label for="star2" title="2 stars">&#9733;</label>
                     <input type="radio" id="star1" name="rating" value="1" />
-                    <label for="star1" title="1 stars">&#9733;</label>
+                    <label for="star1" title="1 star">&#9733;</label>
                 </div>
             </div>
         </div>
@@ -250,12 +242,11 @@
             <textarea id="customerReview" placeholder="Write your review here..."></textarea>
             <button class="submit-btn" onclick="submitReview()">Submit Review</button>
         </div>
-
     </div>
 
     <script>
         const images = [
-           "images/p1_1.jpg",
+            "images/p1_1.jpg",
             "images/p1.jpg",
             "images/p1_2.jpeg",
             "images/p1_3.webp"
@@ -264,7 +255,8 @@
         function changeImage(index) {
             document.querySelector('#main-image img').src = images[index];
         }
-            function buyNow() {
+
+        function buyNow() {
     // Save the product details to localStorage if needed
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const itemName = "Rare Beauty Soft Pinch Liquid Blush";
