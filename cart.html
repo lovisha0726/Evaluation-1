@@ -60,6 +60,12 @@
             font-weight: 500;
         }
 
+        .quantity-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .quantity-input {
             width: 50px;
             padding: 5px;
@@ -119,11 +125,6 @@
                 padding: 20px;
             }
 
-            /* Table Adjustments */
-            .cart-table {
-                width: 100%;
-            }
-
             .cart-table th, .cart-table td {
                 padding: 8px;
                 font-size: 14px;
@@ -133,35 +134,14 @@
                 font-size: 16px;
             }
 
-            /* Full-width button */
             .checkout-btn {
                 font-size: 16px;
                 padding: 10px 20px;
                 width: 100%;
             }
 
-            /* Responsive table structure */
-            .cart-table, .cart-table tbody, .cart-table tr, .cart-table td {
-                display: block;
-                width: 100%;
-            }
-
             .cart-table td {
-                text-align: right;
-                position: relative;
-                padding-left: 50%; /* Space for the label */
-            }
-
-            .cart-table td:before {
-                content: attr(data-label); /* Display label for each column */
-                position: absolute;
-                left: 10px;
-                top: 10px;
-                font-weight: bold;
-            }
-
-            .cart-table td:last-child {
-                margin-bottom: 10px;
+                text-align: left;
             }
 
             #cart-total {
@@ -190,6 +170,15 @@
                 font-size: 14px;
                 padding: 8px 16px;
                 width: 100%;
+            }
+
+            .cart-table td {
+                font-size: 14px;
+            }
+
+            .quantity-controls {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -241,9 +230,11 @@
                     <td data-label="Product">${item.name}</td>
                     <td data-label="Price">$${item.price.toFixed(2)}</td>
                     <td data-label="Quantity">
-                        <button class="btn btn-secondary" onclick="changeQuantity(${index}, -1)">-</button>
-                        ${item.quantity}
-                        <button class="btn btn-secondary" onclick="changeQuantity(${index}, 1)">+</button>
+                        <div class="quantity-controls">
+                            <button class="btn btn-secondary" onclick="changeQuantity(${index}, -1)">-</button>
+                            <span class="quantity-input">${item.quantity}</span>
+                            <button class="btn btn-secondary" onclick="changeQuantity(${index}, 1)">+</button>
+                        </div>
                     </td>
                     <td data-label="Total">$${itemTotal.toFixed(2)}</td>
                     <td data-label="Action"><button class="btn btn-danger" onclick="removeFromCart(${index})">Remove</button></td>
