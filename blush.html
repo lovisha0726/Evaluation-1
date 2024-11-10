@@ -26,32 +26,35 @@
             flex-direction: row;
             justify-content: space-between;
             margin-bottom: 40px;
+            gap: 20px;
         }
         .image-section {
             display: flex;
             flex-direction: column;
             width: 50%;
-            padding-left: 40px;
+            align-items: center;
         }
         #main-image {
-            height: 600px;
-            width: 600px;
-            margin: 0 auto 10px auto;
+            height: auto;
+            max-width: 100%;
+            margin-bottom: 20px;
         }
         #main-image img {
             width: 100%;
-            height: 100%;
+            height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .additional-images {
             display: flex;
             justify-content: center;
+            gap: 10px;
             margin-top: 10px;
+            overflow-x: auto; /* Scroll on small screens */
         }
         .additional-images img {
-            width: calc(33.33% - 10px);
-            height: auto;
+            width: 100px;
+            height: 100px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             cursor: pointer;
@@ -60,40 +63,26 @@
         .additional-images img:hover {
             transform: scale(1.05);
         }
-        .image-navigation {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-        .image-navigation button {
-            background-color: transparent;
-            border: none;
-            font-size: 20px;
-            color: #bfa97a;
-            cursor: pointer;
-            margin: 0 5px;
-        }
         .product-details {
             width: 45%;
             text-align: left;
-            padding-right: 40px;
         }
         h2 {
             color: #bfa97a;
-            font-size: 36px;
+            font-size: 28px;
             margin-bottom: 10px;
             font-weight: 600;
         }
         h4 {
-            font-size: 24px;
+            font-size: 20px;
             color: #d4af37;
             margin-bottom: 15px;
             font-weight: 400;
         }
         p {
-            font-size: 16px;
+            font-size: 14px;
             line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             color: #555;
         }
         .btn {
@@ -102,7 +91,7 @@
             color: #fff;
             padding: 12px 30px;
             border-radius: 50px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             margin: 10px 0;
             border: none;
@@ -148,7 +137,7 @@
             border-radius: 5px;
             border: none;
             cursor: pointer;
-            margin-top:  10px;
+            margin-top: 10px;
             transition: background 0.3s;
         }
         .submit-btn:hover {
@@ -180,6 +169,18 @@
         .rating input:checked ~ label {
             color: gold;
         }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .image-section,
+            .product-details {
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -190,43 +191,38 @@
                     <img src="images/b1.jpg" alt="YSL Crème de Blush in Rose Quartz">
                 </div>
                 <div class="additional-images">
-                    <img src="images/b1.jpg" alt="YSL Crème de Blush in Rose Quartz" onclick="changeImage(0)">
-                    <img src="images/b1_1.jpg" alt="YSL Crème de Blush in Rose Quartz - 1" onclick="changeImage(1)">
-                    <img src="images/b1_2.jpg" alt="YSL Crème de Blush in Rose Quartz - 2" onclick="changeImage(2)">
-                    <img src="images/b1_3.jpg" alt="YSL Crème de Blush in Rose Quartz - 3" onclick="changeImage(3)">
-                </div>
-                <div class="image-navigation">
-                    <button onclick="changeImage(0)">1</button>
-                    <button onclick="changeImage(1)">2</button>
-                    <button onclick="changeImage(2)">3</button>
-                    <button onclick="changeImage(3)">4</button>
+                    <img src="images/b1.jpg" alt="Blush" onclick="changeImage(0)">
+                    <img src="images/b1_1.jpg" alt="Blush 1" onclick="changeImage(1)">
+                    <img src="images/b1_2.jpg" alt="Blush 2" onclick="changeImage(2)">
+                    <img src="images/b1_3.jpg" alt="Blush 3" onclick="changeImage(3)">
                 </div>
             </div>
-
             <div class="product-details">
                 <h2>YSL Crème de Blush in Rose Quartz</h2>
                 <h4>$100.00</h4>
-                <p>Experience the ultimate luxury with YVES SAINT LAURENT Touche Éclat Blur Primer. This lightweight, illuminating primer blurs imperfections, leaving your skin smooth, radiant, and ready for flawless makeup application.</p>
+                <p>Experience the ultimate luxury with this lightweight, creamy blush that adds a pop of color to your cheeks.</p>
                 <div class="buttons">
                     <button class="btn" onclick="buyNow()">Buy Now</button>
                     <button class="btn" onclick="addToCartAndGoToCart()">Add to Cart</button>
                 </div>
             </div>
-                </div>
-            </div>
         </div>
 
         <hr>
+
+        <!-- Ingredients Section -->
         <div class="section">
             <h4>Ingredients:</h4>
             <p>Water, Dimethicone, Glycerin, Ethylhexyl Palmitate, etc.</p>
         </div>
 
+        <!-- Description Section -->
         <div class="section">
             <h4>Product Description:</h4>
-            <p>This illuminating primer not only blurs imperfections but also provides a radiant finish for a flawless makeup application. Suitable for all skin types.</p>
+            <p>A creamy blush that provides a natural, radiant flush of color. Perfect for all skin types.</p>
         </div>
 
+        <!-- Star Review Section -->
         <div class="section">
             <h4>Star Review Rating:</h4>
             <div class="star-review-container">
@@ -240,22 +236,22 @@
                     <input type="radio" id="star2" name="rating" value="2" />
                     <label for="star2" title="2 stars">&#9733;</label>
                     <input type="radio" id="star1" name="rating" value="1" />
-                    <label for="star1" title="1 stars">&#9733;</label>
+                    <label for="star1" title="1 star">&#9733;</label>
                 </div>
             </div>
         </div>
 
+        
         <div class="section">
             <h4>Customer Reviews:</h4>
             <textarea id="customerReview" placeholder="Write your review here..."></textarea>
             <button class="submit-btn" onclick="submitReview()">Submit Review</button>
         </div>
-
     </div>
 
     <script>
         const images = [
-           "images/b1.jpg",
+            "images/b1.jpg",
             "images/b1_1.jpg",
             "images/b1_2.jpg",
             "images/b1_3.jpg"
@@ -266,21 +262,20 @@
         }
 
         function buyNow() {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    const itemName = "YSL Crème de Blush in Rose Quartz";
-    const itemPrice = 100.00;
-    const quantity = 1;
-    const existingItem = cartItems.find(item => item.name === itemName);
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        cartItems.push({ name: itemName, price: itemPrice, quantity });
-    }
-    localStorage.setItem('cart', JSON.stringify(cartItems));
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const itemName = "YSL Crème de Blush in Rose Quartz";
+            const itemPrice = 100.00;
+            const quantity = 1;
 
-    window.location.href = 'checkout.html';
-}
-
+            const existingItem = cartItems.find(item => item.name === itemName);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cartItems.push({ name: itemName, price: itemPrice, quantity });
+            }
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            window.location.href = 'checkout.html';
+        }
 
         function addToCartAndGoToCart() {
             const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
@@ -295,7 +290,6 @@
                 cartItems.push({ name: itemName, price: itemPrice, quantity });
             }
             localStorage.setItem('cart', JSON.stringify(cartItems));
-
             window.location.href = 'cart.html';
         }
 
@@ -303,7 +297,7 @@
             const review = document.getElementById('customerReview').value;
             if (review) {
                 alert("Thank you for your review!");
-                document.getElementById('customerReview').value = ""; 
+                document.getElementById('customerReview').value = "";
             } else {
                 alert("Please write a review before submitting.");
             }
