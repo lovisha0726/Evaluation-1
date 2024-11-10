@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Your Order</title>
+    <title>Yours Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -13,57 +15,194 @@
             margin: 0;
             padding: 20px;
         }
-        .container {
-            max-width: 800px;
+        
+        h2, h4 {
+            font-family: 'Playfair Display', serif;
+            color: #bfa97a;
+        }
+
+        .cart-container {
+            max-width: 1000px; 
             margin: 40px auto;
             padding: 40px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
         }
-        .form-group {
+
+        .cart-table {
+            width: 100%;
             margin-bottom: 20px;
+            border-collapse: collapse;
         }
-        .btn-primary {
+
+        .cart-table th, .cart-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .cart-table th {
+            background-color: #f5f3ed;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .cart-table td {
+            font-size: 16px;
+            color: #555;
+        }
+
+        #cart-total {
+            font-size: 24px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .quantity-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quantity-input {
+            width: 50px;
+            padding: 5px;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-btn {
             background-color: #bfa97a;
+            color: #ffffff;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-family: 'Playfair Display', serif;
             border: none;
-            color: white;
-            padding: 12px 30px;
             border-radius: 50px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
-        .btn-primary:hover {
+
+        .checkout-btn:hover {
             background-color: #d4af37;
+            color: #fff;
         }
-        .footer {
+
+        .btn-secondary, .btn-danger {
+            font-family: 'Roboto', sans-serif;
+            border-radius: 8px;
+        }
+
+        .btn-danger {
+            background-color: #e57373;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-danger:hover {
+            background-color: #d32f2f;
+        }
+
+        footer {
             text-align: center;
             font-size: 14px;
             color: #888;
+            padding: 15px;
             margin-top: 40px;
+            background-color: #f5f3ed;
+            border-radius: 5px;
+        }
+
+        /* Responsive Design */
+        @media only screen and (max-width: 768px) {
+            .cart-container {
+                padding: 20px;
+            }
+
+            .cart-table th, .cart-table td {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .cart-table th {
+                font-size: 16px;
+            }
+
+            .checkout-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+                width: 100%;
+            }
+
+            .cart-table td {
+                text-align: left;
+            }
+
+            #cart-total {
+                font-size: 18px;
+            }
+
+            footer {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+
+        /* For Extra Small Screens */
+        @media only screen and (max-width: 480px) {
+            footer {
+                font-size: 10px;
+                padding: 8px;
+            }
+
+            .cart-container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .checkout-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+                width: 100%;
+            }
+
+            .cart-table td {
+                font-size: 14px;
+            }
+
+            .quantity-controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2 class="text-center">Checkout</h2>
-        <form id="checkout-form">
-            <div class="form-group">
-                <label for="address">Shipping Address:</label>
-                <textarea id="address" class="form-control" placeholder="Enter your shipping address" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="payment-method">Payment Method:</label>
-                <select id="payment-method" class="form-control" required>
-                    <option value="">Select Payment Method</option>
-                    <option value="credit-card">Credit Card</option>
-                    <option value="paypal">PayPal</option>
-                    <option value="cash-on-delivery">Cash on Delivery</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Place Order</button>
-        </form>
+    <div class="cart-container">
+        <h2 class="text-center">Your Cart</h2>
+        <table id="cart-table" class="table table-borderless">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items"></tbody>
+        </table>
+        <h4 id="cart-total" class="text-end">Total: $0.00</h4>
+        <div class="text-center">
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
     </div>
 
     <footer class="footer">
@@ -71,39 +210,67 @@
     </footer>
 
     <script>
-        document.getElementById('checkout-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+        function updateCartDisplay() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartBody = document.getElementById('cart-items');
+            cartBody.innerHTML = '';
+            let totalPrice = 0;
 
-            const address = document.getElementById('address').value;
-            const paymentMethod = document.getElementById('payment-method').value;
-
-            if (!address || !paymentMethod) {
-                alert('Please fill in all fields.');
+            if (cartItems.length === 0) {
+                cartBody.innerHTML = '<tr><td colspan="5" class="text-center">Your cart is empty.</td></tr>';
+                document.getElementById('cart-total').textContent = 'Total: $0.00';
                 return;
             }
 
+            cartItems.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+                const itemRow = document.createElement('tr');
+                itemRow.innerHTML = `
+                    <td data-label="Product">${item.name}</td>
+                    <td data-label="Price">$${item.price.toFixed(2)}</td>
+                    <td data-label="Quantity">
+                        <div class="quantity-controls">
+                            <button class="btn btn-secondary" onclick="changeQuantity(${index}, -1)">-</button>
+                            <span class="quantity-input">${item.quantity}</span>
+                            <button class="btn btn-secondary" onclick="changeQuantity(${index}, 1)">+</button>
+                        </div>
+                    </td>
+                    <td data-label="Total">$${itemTotal.toFixed(2)}</td>
+                    <td data-label="Action"><button class="btn btn-danger" onclick="removeFromCart(${index})">Remove</button></td>
+                `;
+                cartBody.appendChild(itemRow);
+            });
+
+            document.getElementById('cart-total').textContent = `Total: $${totalPrice.toFixed(2)}`;
+        }
+
+        function changeQuantity(index, delta) {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems[index].quantity += delta;
+            if (cartItems[index].quantity <= 0) cartItems.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            updateCartDisplay();
+        }
+
+        function removeFromCart(index) {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            updateCartDisplay();
+        }
+
+        function checkout() {
             const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
             if (cartItems.length === 0) {
                 alert('Your cart is empty. Please add items before checking out.');
                 return;
             }
 
-            alert('Order placed successfully!');
+            window.location.href = 'checkout.html';
+        }
 
-           
-            localStorage.removeItem('cart');
-            window.location.href = 'index.html';
-            function checkout() {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cartItems.length === 0) {
-        alert('Your cart is empty. Please add items before checking out.');
-        return;
-    }
-
-    window.location.href = 'checkout.html';
-}
-
-        });
+        document.addEventListener('DOMContentLoaded', updateCartDisplay);
     </script>
 </body>
 </html>
