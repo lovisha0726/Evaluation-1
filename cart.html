@@ -22,13 +22,13 @@
         }
 
         .cart-container {
-            max-width: 1000px; 
-            margin: 40px auto;
-            padding: 40px;
-            border-radius: 10px;
-            background-color: #ffffff;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
-        }
+        max-width: 1000px; 
+        margin: 40px auto;
+        padding: 40px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
 
         .cart-table {
             width: 100%;
@@ -58,12 +58,6 @@
             font-size: 24px;
             color: #333;
             font-weight: 500;
-        }
-
-        .quantity-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .quantity-input {
@@ -115,71 +109,6 @@
             color: #888;
             padding: 15px;
             margin-top: 40px;
-            background-color: #f5f3ed;
-            border-radius: 5px;
-        }
-
-        /* Responsive Design */
-        @media only screen and (max-width: 768px) {
-            .cart-container {
-                padding: 20px;
-            }
-
-            .cart-table th, .cart-table td {
-                padding: 8px;
-                font-size: 14px;
-            }
-
-            .cart-table th {
-                font-size: 16px;
-            }
-
-            .checkout-btn {
-                font-size: 16px;
-                padding: 10px 20px;
-                width: 100%;
-            }
-
-            .cart-table td {
-                text-align: left;
-            }
-
-            #cart-total {
-                font-size: 18px;
-            }
-
-            footer {
-                font-size: 12px;
-                padding: 10px;
-            }
-        }
-
-        /* For Extra Small Screens */
-        @media only screen and (max-width: 480px) {
-            footer {
-                font-size: 10px;
-                padding: 8px;
-            }
-
-            .cart-container {
-                margin: 20px auto;
-                padding: 15px;
-            }
-
-            .checkout-btn {
-                font-size: 14px;
-                padding: 8px 16px;
-                width: 100%;
-            }
-
-            .cart-table td {
-                font-size: 14px;
-            }
-
-            .quantity-controls {
-                flex-direction: column;
-                align-items: flex-start;
-            }
         }
     </style>
 </head>
@@ -227,17 +156,15 @@
                 totalPrice += itemTotal;
                 const itemRow = document.createElement('tr');
                 itemRow.innerHTML = `
-                    <td data-label="Product">${item.name}</td>
-                    <td data-label="Price">$${item.price.toFixed(2)}</td>
-                    <td data-label="Quantity">
-                        <div class="quantity-controls">
-                            <button class="btn btn-secondary" onclick="changeQuantity(${index}, -1)">-</button>
-                            <span class="quantity-input">${item.quantity}</span>
-                            <button class="btn btn-secondary" onclick="changeQuantity(${index}, 1)">+</button>
-                        </div>
+                    <td>${item.name}</td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td>
+                        <button class="btn btn-secondary" onclick="changeQuantity(${index}, -1)">-</button>
+                        ${item.quantity}
+                        <button class="btn btn-secondary" onclick="changeQuantity(${index}, 1)">+</button>
                     </td>
-                    <td data-label="Total">$${itemTotal.toFixed(2)}</td>
-                    <td data-label="Action"><button class="btn btn-danger" onclick="removeFromCart(${index})">Remove</button></td>
+                    <td>$${itemTotal.toFixed(2)}</td>
+                    <td><button class="btn btn-danger" onclick="removeFromCart(${index})">Remove</button></td>
                 `;
                 cartBody.appendChild(itemRow);
             });
@@ -261,14 +188,15 @@
         }
 
         function checkout() {
-            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-            if (cartItems.length === 0) {
-                alert('Your cart is empty. Please add items before checking out.');
-                return;
-            }
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cartItems.length === 0) {
+        alert('Your cart is empty. Please add items before checking out.');
+        return;
+    }
 
-            window.location.href = 'checkout.html';
-        }
+
+    window.location.href = 'checkout.html';
+}
 
         document.addEventListener('DOMContentLoaded', updateCartDisplay);
     </script>
