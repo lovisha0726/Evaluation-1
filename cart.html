@@ -117,51 +117,53 @@
                 padding: 20px;
             }
 
-            .cart-table th, .cart-table td {
-                font-size: 14px; /* Smaller font size for smaller screens */
-                padding: 10px; /* Less padding for smaller screens */
-            }
-
-            #cart-total {
-                font-size: 20px; /* Slightly smaller total font */
-            }
-
-            .checkout-btn {
-                font-size: 16px;
-                padding: 10px 20px;
-                width: 100%; /* Full-width button */
-            }
-
-            .quantity-input {
-                width: 40px;
-            }
-
-            /* Stack columns for small screens */
-            .cart-table th, .cart-table td {
-                display: block;
+            /* Table Adjustments */
+            .cart-table {
                 width: 100%;
-                text-align: right; /* Right align text for readability */
+            }
+
+            .cart-table th, .cart-table td {
+                padding: 8px;
+                font-size: 14px;
             }
 
             .cart-table th {
-                text-align: left; /* Keep header aligned left */
                 font-size: 16px;
             }
 
-            /* Add a visual break between rows */
-            .cart-table td {
-                border-top: 1px solid #e0e0e0;
-            }
-
-            .cart-table td:before {
-                content: attr(data-label); /* Show label before content on mobile */
-                font-weight: bold;
-                display: inline-block;
+            /* Full-width button */
+            .checkout-btn {
+                font-size: 16px;
+                padding: 10px 20px;
                 width: 100%;
             }
 
+            /* Responsive table structure */
+            .cart-table, .cart-table tbody, .cart-table tr, .cart-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .cart-table td {
+                text-align: right;
+                position: relative;
+                padding-left: 50%; /* Space for the label */
+            }
+
+            .cart-table td:before {
+                content: attr(data-label); /* Display label for each column */
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                font-weight: bold;
+            }
+
             .cart-table td:last-child {
-                margin-bottom: 10px; /* Space after action buttons */
+                margin-bottom: 10px;
+            }
+
+            #cart-total {
+                font-size: 18px;
             }
 
             footer {
@@ -214,15 +216,15 @@
                 totalPrice += itemTotal;
                 const itemRow = document.createElement('tr');
                 itemRow.innerHTML = `
-                    <td>${item.name}</td>
-                    <td>$${item.price.toFixed(2)}</td>
-                    <td>
+                    <td data-label="Product">${item.name}</td>
+                    <td data-label="Price">$${item.price.toFixed(2)}</td>
+                    <td data-label="Quantity">
                         <button class="btn btn-secondary" onclick="changeQuantity(${index}, -1)">-</button>
                         ${item.quantity}
                         <button class="btn btn-secondary" onclick="changeQuantity(${index}, 1)">+</button>
                     </td>
-                    <td>$${itemTotal.toFixed(2)}</td>
-                    <td><button class="btn btn-danger" onclick="removeFromCart(${index})">Remove</button></td>
+                    <td data-label="Total">$${itemTotal.toFixed(2)}</td>
+                    <td data-label="Action"><button class="btn btn-danger" onclick="removeFromCart(${index})">Remove</button></td>
                 `;
                 cartBody.appendChild(itemRow);
             });
