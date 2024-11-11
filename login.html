@@ -17,7 +17,7 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background: linear-gradient(135deg, #faf8f3, #f4efe9); /* Soft gradient background */
+        background: linear-gradient(135deg, #faf8f3, #f4efe9); 
     }
 
     .container {
@@ -25,8 +25,8 @@
         padding: 40px;
         background-color: #fff;
         border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Subtle shadow */
-        transition: all 0.3s ease; /* Adjusts height dynamically */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+        transition: all 0.3s ease; 
     }
 
     .form-container {
@@ -57,7 +57,7 @@
 
     .switch button.active {
         background-color: #d4af37;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds depth to active button */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     }
 
     .form-wrapper {
@@ -178,7 +178,6 @@
                     <p class="error hidden">Please fill out all fields.</p>
                 </form>
 
-                <!-- Signup Form -->
                 <form id="signupForm" class="form hidden" autocomplete="off">
                     <h2>Join Us!</h2>
                     <h2> </h2>
@@ -207,23 +206,20 @@
         const loginLoader = loginForm.querySelector('.loader');
         const signupLoader = signupForm.querySelector('.loader');
     
-        // Switch to Signup
         signupBtn.addEventListener('click', () => {
-            signupForm.classList.add('active'); // Show signup form
-            loginForm.classList.remove('active'); // Hide login form
+            signupForm.classList.add('active'); 
+            loginForm.classList.remove('active'); 
             signupBtn.classList.add('active');
             loginBtn.classList.remove('active');
         });
     
-        // Switch to Login
         loginBtn.addEventListener('click', () => {
-            loginForm.classList.add('active'); // Show login form
-            signupForm.classList.remove('active'); // Hide signup form
+            loginForm.classList.add('active'); 
+            signupForm.classList.remove('active'); 
             loginBtn.classList.add('active');
             signupBtn.classList.remove('active');
         });
     
-        // Form Submission Handlers
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
@@ -255,7 +251,7 @@
             loader.classList.remove('hidden');
             setTimeout(() => {
                 loader.classList.add('hidden');
-                window.location.href = redirectUrl; // Redirect to index.html after loading
+                window.location.href = redirectUrl; 
             }, 2000);
         }
     </script>
